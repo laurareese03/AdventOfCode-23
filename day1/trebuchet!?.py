@@ -1,6 +1,6 @@
 import regex as re
 
-with open('input.txt') as f:
+with open('calibration_document.txt') as f:
   lines = f.readlines()
 
 words = {
@@ -18,10 +18,12 @@ words = {
 count_a = 0
 count_b = 0
 for line in lines:
+  # part a
   pattern = re.findall(r'\d', line)
   pair = int(str(pattern[0]) + str(pattern[-1]))
   count_a += pair
 
+  # part b
   pattern = re.findall(r'|'.join(words.keys()) + r'|\d', line, overlapped=True)
   pattern = [words[x] if x in words.keys() else x for x in pattern]
   pair = int(str(pattern[0]) + str(pattern[-1]))
